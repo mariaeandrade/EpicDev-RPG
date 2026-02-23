@@ -32,9 +32,9 @@ class Guerreiro extends Personagem {
     }
 
     atacar(alvo) {
-        const danoTotal = this.poderDeAtaque + this.forcaFisica;
-        console.log(` ${this.nome} golpeia ${alvo.nome} com força, causando ${danoTotal} de dano!`);
-        alvo.receberDano(danoTotal);
+        const dano = this.poderDeAtaque + this.forcaFisica;
+        console.log(`${this.nome} golpeou ${alvo.nome}, causando ${dano} de dano`);
+        alvo.receberDano(dano);
     }
 }
 
@@ -45,20 +45,29 @@ class Mago extends Personagem {
     }
 
     atacar(alvo) {
-        const danoTotal = this.poderDeAtaque + this.poderMagico;
-        console.log(
-            ` ${this.nome} lança um feitiço em ${alvo.nome}, causando ${danoTotal} de dano!`,
-        );
-        alvo.receberDano(danoTotal);
+        const dano = this.poderDeAtaque + this.poderMagico * 2;
+        console.log(`${this.nome} lançou uma magia em ${alvo.nome}, e causou ${dano} de dano`);
+        alvo.receberDano(dano);
     }
 }
 
-const cremasco = new Guerreiro('cremasco', 10, 100, 15);
-const andrade = new Mago('andrade', 5, 80, 25);
+const guerreira = new Guerreiro('Cremasco', 12, 138, 30);
+const maga = new Mago('Andrade', 30, 98, 25);
 
-cremasco.atacar(andrade);
-andrade.exibirStatus();
+guerreira.exibirStatus();
+maga.exibirStatus();
 
+console.log('');
 
-andrade.atacar(cremasco);
-cremasco.exibirStatus();
+guerreira.atacar(maga);
+maga.exibirStatus();
+
+console.log('');
+
+maga.atacar(guerreira);
+guerreira.exibirStatus();
+
+console.log('');
+
+maga.exibirStatus();
+guerreira.exibirStatus();
